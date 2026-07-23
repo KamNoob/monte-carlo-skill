@@ -1,0 +1,343 @@
+{
+  "metadata": {
+    "skill_name": "monte-carlo",
+    "skill_path": "<path/to/skill>",
+    "executor_model": "<model-name>",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-06-24T09:36:27Z",
+    "evals_run": [
+      0,
+      1,
+      2
+    ],
+    "runs_per_configuration": 3
+  },
+  "runs": [
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 195.7,
+        "tokens": 29782,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "produces_python_code",
+          "passed": true,
+          "evidence": "Full M-H implementation in Python with logit-space sampling"
+        },
+        {
+          "text": "implements_metropolis_hastings",
+          "passed": true,
+          "evidence": "Explicit accept/reject loop with log_alpha = log_p_proposal - log_p_current; log uniform comparison"
+        },
+        {
+          "text": "uses_beta_prior",
+          "passed": true,
+          "evidence": "alpha_prior=2, beta_prior=2; log_prior = (alpha_prior-1)*log(theta) + (beta_prior-1)*log(1-theta)"
+        },
+        {
+          "text": "binomial_likelihood",
+          "passed": true,
+          "evidence": "log_lik = n_heads*log(theta) + (n_flips-n_heads)*log(1-theta) with n_heads=7, n_flips=10"
+        },
+        {
+          "text": "reports_credible_interval",
+          "passed": true,
+          "evidence": "95% CI [0.381, 0.860] from np.percentile(theta_post, [2.5, 97.5])"
+        },
+        {
+          "text": "discusses_diagnostics",
+          "passed": true,
+          "evidence": "Acceptance rate 41.4% (vs 44% target), ESS ~9235, burn-in 10k/50k (20%), R-hat mentioned for future multiple chains"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 87.7,
+        "tokens": 24589,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "produces_python_code",
+          "passed": true,
+          "evidence": "GBM simulation code shown; BS formula code shown"
+        },
+        {
+          "text": "uses_gbm",
+          "passed": true,
+          "evidence": "Explicit GBM formula: S_T = S0 * exp((r - \u03c3\u00b2/2)*T + \u03c3*\u221aT*Z); risk-neutral measure stated"
+        },
+        {
+          "text": "discounts_payoff",
+          "passed": true,
+          "evidence": "exp(-r*T) discount factor explicitly applied; mentioned in design section"
+        },
+        {
+          "text": "reports_confidence_interval",
+          "passed": true,
+          "evidence": "95% CI [\u00a34.5614, \u00a34.6068] with SE=\u00a30.0116, rel std error 0.25%"
+        },
+        {
+          "text": "black_scholes_validation",
+          "passed": true,
+          "evidence": "BS computed analytically (\u00a34.5817); d1/d2/N values shown in table; error 0.053%; BS inside CI confirmed"
+        },
+        {
+          "text": "correct_parameter_usage",
+          "passed": true,
+          "evidence": "S0=\u00a3100, K=\u00a3105, r=5%, \u03c3=20%, T=0.5 all used correctly in simulation and BS formula"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 71.9,
+        "tokens": 20330,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "produces_python_code",
+          "passed": true,
+          "evidence": "Full numpy/matplotlib Python script provided with ~60 lines of runnable code"
+        },
+        {
+          "text": "uses_numpy_vectorisation",
+          "passed": true,
+          "evidence": "Explicitly stated 'Vectorised numpy throughout \u2014 no Python loops'. Draws all N_MAX samples once upfront and slices."
+        },
+        {
+          "text": "reports_confidence_interval",
+          "passed": true,
+          "evidence": "95% CI computed as estimate \u00b1 1.96 \u00d7 SE; results table shows [3.138, 3.145]"
+        },
+        {
+          "text": "convergence_analysis",
+          "passed": true,
+          "evidence": "50 log-spaced N values from 100 to 1,000,000; convergence plot included; CI band narrows visibly"
+        },
+        {
+          "text": "validates_against_true_pi",
+          "passed": true,
+          "evidence": "Results table shows error 0.0001 (0.003%), CI containment check printed: 'CI contains true \u03c0: True'"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 83.1,
+        "tokens": 19278,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "produces_python_code",
+          "passed": true,
+          "evidence": "Full M-H implementation provided"
+        },
+        {
+          "text": "implements_metropolis_hastings",
+          "passed": true,
+          "evidence": "log_alpha = log_post_prop - log_post_cur; np.log(np.random.uniform()) < log_alpha"
+        },
+        {
+          "text": "uses_beta_prior",
+          "passed": true,
+          "evidence": "alpha_prior=2.0, beta_prior=2.0; Beta(2,2) in log_posterior"
+        },
+        {
+          "text": "binomial_likelihood",
+          "passed": true,
+          "evidence": "k*log(theta) + (n-k)*log(1-theta) with k=7, n=10"
+        },
+        {
+          "text": "reports_credible_interval",
+          "passed": true,
+          "evidence": "ci_low, ci_high = np.percentile(samples, [2.5, 97.5]) \u2192 [0.384, 0.877]"
+        },
+        {
+          "text": "discusses_diagnostics",
+          "passed": true,
+          "evidence": "Acceptance rate 44.1%, burn-in 5000/55000, detailed balance mentioned"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 96.8,
+        "tokens": 20588,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "produces_python_code",
+          "passed": true,
+          "evidence": "GBM simulation code and BS code provided"
+        },
+        {
+          "text": "uses_gbm",
+          "passed": true,
+          "evidence": "S_T = S\u2080\u00b7exp[(r \u2212 \u03c3\u00b2/2)\u00b7T + \u03c3\u00b7\u221aT\u00b7Z] formula shown"
+        },
+        {
+          "text": "discounts_payoff",
+          "passed": true,
+          "evidence": "Mentions 'discounted payoff max(S_T \u2212 K, 0)\u00b7e^(\u2212rT)'"
+        },
+        {
+          "text": "reports_confidence_interval",
+          "passed": true,
+          "evidence": "95% CI [\u00a34.5693, \u00a34.6013] with SE=\u00a30.0082"
+        },
+        {
+          "text": "black_scholes_validation",
+          "passed": true,
+          "evidence": "BS computed (\u00a34.5817); d1/d2 calculations shown; absolute error \u00a30.0036; BS inside CI confirmed"
+        },
+        {
+          "text": "correct_parameter_usage",
+          "passed": true,
+          "evidence": "All parameters S0=100, K=105, r=0.05, \u03c3=0.20, T=0.5 correct"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 51.4,
+        "tokens": 18269,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "produces_python_code",
+          "passed": true,
+          "evidence": "~120-line Python script using numpy/scipy/matplotlib provided"
+        },
+        {
+          "text": "uses_numpy_vectorisation",
+          "passed": true,
+          "evidence": "Uses numpy arrays for all sampling; no Python loops for core simulation"
+        },
+        {
+          "text": "reports_confidence_interval",
+          "passed": true,
+          "evidence": "Normal approximation CI per sample size; convergence table includes CI bounds"
+        },
+        {
+          "text": "convergence_analysis",
+          "passed": true,
+          "evidence": "Convergence table across 11 N values; log-log plot with 1/\u221aN reference line"
+        },
+        {
+          "text": "validates_against_true_pi",
+          "passed": true,
+          "evidence": "Absolute error column in convergence table; compared against np.pi"
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 118.4333,
+        "stddev": 67.3796,
+        "min": 71.9,
+        "max": 195.7
+      },
+      "tokens": {
+        "mean": 24900.3333,
+        "stddev": 4733.6849,
+        "min": 20330,
+        "max": 29782
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 77.1,
+        "stddev": 23.2871,
+        "min": 51.4,
+        "max": 96.8
+      },
+      "tokens": {
+        "mean": 19378.3333,
+        "stddev": 1162.7512,
+        "min": 18269,
+        "max": 20588
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.00",
+      "time_seconds": "+41.3",
+      "tokens": "+5522"
+    }
+  },
+  "notes": []
+}

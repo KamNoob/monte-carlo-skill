@@ -1,0 +1,31 @@
+{
+  "eval_id": 1,
+  "eval_name": "option-pricing",
+  "prompt": "I need to price a European call option using Monte Carlo. Stock is currently at £100, strike is £105, risk-free rate is 5%, volatility is 20%, time to expiry is 6 months. Show me the MC price, a confidence interval, and validate it against the Black-Scholes analytical price.",
+  "assertions": [
+    {
+      "id": "produces_python_code",
+      "description": "Response includes runnable Python code"
+    },
+    {
+      "id": "uses_gbm",
+      "description": "Code uses Geometric Brownian Motion or equivalent log-normal model"
+    },
+    {
+      "id": "discounts_payoff",
+      "description": "Code applies exp(-rT) discount factor to the payoff"
+    },
+    {
+      "id": "reports_confidence_interval",
+      "description": "Response reports a confidence interval on the MC price"
+    },
+    {
+      "id": "black_scholes_validation",
+      "description": "Response computes or references the Black-Scholes analytical price for comparison"
+    },
+    {
+      "id": "correct_parameter_usage",
+      "description": "Code correctly uses S0=100, K=105, r=0.05, sigma=0.20, T=0.5"
+    }
+  ]
+}

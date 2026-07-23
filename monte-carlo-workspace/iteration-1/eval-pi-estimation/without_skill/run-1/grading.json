@@ -1,0 +1,40 @@
+{
+  "eval_id": 0,
+  "eval_name": "pi-estimation",
+  "configuration": "without_skill",
+  "expectations": [
+    {
+      "text": "produces_python_code",
+      "passed": true,
+      "evidence": "~120-line Python script using numpy/scipy/matplotlib provided"
+    },
+    {
+      "text": "uses_numpy_vectorisation",
+      "passed": true,
+      "evidence": "Uses numpy arrays for all sampling; no Python loops for core simulation"
+    },
+    {
+      "text": "reports_confidence_interval",
+      "passed": true,
+      "evidence": "Normal approximation CI per sample size; convergence table includes CI bounds"
+    },
+    {
+      "text": "convergence_analysis",
+      "passed": true,
+      "evidence": "Convergence table across 11 N values; log-log plot with 1/\u221aN reference line"
+    },
+    {
+      "text": "validates_against_true_pi",
+      "passed": true,
+      "evidence": "Absolute error column in convergence table; compared against np.pi"
+    }
+  ],
+  "pass_rate": 1.0,
+  "notes": "Strong baseline \u2014 4 subplots including scatter, convergence, error decay, and CI width. Missing: variance reduction suggestions, explicit problem classification framework.",
+  "summary": {
+    "pass_rate": 1.0,
+    "passed": 5,
+    "failed": 0,
+    "total": 5
+  }
+}

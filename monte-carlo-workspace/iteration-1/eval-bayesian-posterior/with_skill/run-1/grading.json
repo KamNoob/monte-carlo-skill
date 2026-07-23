@@ -1,0 +1,45 @@
+{
+  "eval_id": 2,
+  "eval_name": "bayesian-posterior",
+  "configuration": "with_skill",
+  "expectations": [
+    {
+      "text": "produces_python_code",
+      "passed": true,
+      "evidence": "Full M-H implementation in Python with logit-space sampling"
+    },
+    {
+      "text": "implements_metropolis_hastings",
+      "passed": true,
+      "evidence": "Explicit accept/reject loop with log_alpha = log_p_proposal - log_p_current; log uniform comparison"
+    },
+    {
+      "text": "uses_beta_prior",
+      "passed": true,
+      "evidence": "alpha_prior=2, beta_prior=2; log_prior = (alpha_prior-1)*log(theta) + (beta_prior-1)*log(1-theta)"
+    },
+    {
+      "text": "binomial_likelihood",
+      "passed": true,
+      "evidence": "log_lik = n_heads*log(theta) + (n_flips-n_heads)*log(1-theta) with n_heads=7, n_flips=10"
+    },
+    {
+      "text": "reports_credible_interval",
+      "passed": true,
+      "evidence": "95% CI [0.381, 0.860] from np.percentile(theta_post, [2.5, 97.5])"
+    },
+    {
+      "text": "discusses_diagnostics",
+      "passed": true,
+      "evidence": "Acceptance rate 41.4% (vs 44% target), ESS ~9235, burn-in 10k/50k (20%), R-hat mentioned for future multiple chains"
+    }
+  ],
+  "pass_rate": 1.0,
+  "notes": "Skill added significant extra value here: logit-space sampling (avoids boundary issues), Jacobian correction, proposal tuning table (4 std values compared), ESS calculation, validation against analytic Beta(9,5) posterior. These are all best practices the baseline skipped.",
+  "summary": {
+    "pass_rate": 1.0,
+    "passed": 6,
+    "failed": 0,
+    "total": 6
+  }
+}

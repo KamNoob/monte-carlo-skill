@@ -1,0 +1,40 @@
+{
+  "eval_id": 0,
+  "eval_name": "pi-estimation",
+  "configuration": "with_skill",
+  "expectations": [
+    {
+      "text": "produces_python_code",
+      "passed": true,
+      "evidence": "Full numpy/matplotlib Python script provided with ~60 lines of runnable code"
+    },
+    {
+      "text": "uses_numpy_vectorisation",
+      "passed": true,
+      "evidence": "Explicitly stated 'Vectorised numpy throughout \u2014 no Python loops'. Draws all N_MAX samples once upfront and slices."
+    },
+    {
+      "text": "reports_confidence_interval",
+      "passed": true,
+      "evidence": "95% CI computed as estimate \u00b1 1.96 \u00d7 SE; results table shows [3.138, 3.145]"
+    },
+    {
+      "text": "convergence_analysis",
+      "passed": true,
+      "evidence": "50 log-spaced N values from 100 to 1,000,000; convergence plot included; CI band narrows visibly"
+    },
+    {
+      "text": "validates_against_true_pi",
+      "passed": true,
+      "evidence": "Results table shows error 0.0001 (0.003%), CI containment check printed: 'CI contains true \u03c0: True'"
+    }
+  ],
+  "pass_rate": 1.0,
+  "notes": "Skill improved structure: explicit problem type classification, variance reduction suggestions (antithetic variates, stratified sampling), and rel std error target (<1%). Baseline also passed all assertions but lacked these extras.",
+  "summary": {
+    "pass_rate": 1.0,
+    "passed": 5,
+    "failed": 0,
+    "total": 5
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "eval_id": 2,
+  "eval_name": "bayesian-posterior",
+  "prompt": "I have some coin flip data: 7 heads out of 10 flips. I want to estimate the posterior distribution of the coin's bias using MCMC with a Beta(2,2) prior. Implement Metropolis-Hastings from scratch, show me the posterior, and compute the 95% credible interval for the bias.",
+  "assertions": [
+    {
+      "id": "produces_python_code",
+      "description": "Response includes runnable Python code"
+    },
+    {
+      "id": "implements_metropolis_hastings",
+      "description": "Code explicitly implements Metropolis-Hastings accept/reject step"
+    },
+    {
+      "id": "uses_beta_prior",
+      "description": "Code uses Beta(2,2) or equivalent prior"
+    },
+    {
+      "id": "binomial_likelihood",
+      "description": "Code uses binomial likelihood for 7 heads out of 10"
+    },
+    {
+      "id": "reports_credible_interval",
+      "description": "Response reports a 95% credible interval on the bias"
+    },
+    {
+      "id": "discusses_diagnostics",
+      "description": "Response mentions burn-in, acceptance rate, or convergence diagnostics"
+    }
+  ]
+}

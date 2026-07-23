@@ -1,0 +1,45 @@
+{
+  "eval_id": 2,
+  "eval_name": "bayesian-posterior",
+  "configuration": "without_skill",
+  "expectations": [
+    {
+      "text": "produces_python_code",
+      "passed": true,
+      "evidence": "Full M-H implementation provided"
+    },
+    {
+      "text": "implements_metropolis_hastings",
+      "passed": true,
+      "evidence": "log_alpha = log_post_prop - log_post_cur; np.log(np.random.uniform()) < log_alpha"
+    },
+    {
+      "text": "uses_beta_prior",
+      "passed": true,
+      "evidence": "alpha_prior=2.0, beta_prior=2.0; Beta(2,2) in log_posterior"
+    },
+    {
+      "text": "binomial_likelihood",
+      "passed": true,
+      "evidence": "k*log(theta) + (n-k)*log(1-theta) with k=7, n=10"
+    },
+    {
+      "text": "reports_credible_interval",
+      "passed": true,
+      "evidence": "ci_low, ci_high = np.percentile(samples, [2.5, 97.5]) \u2192 [0.384, 0.877]"
+    },
+    {
+      "text": "discusses_diagnostics",
+      "passed": true,
+      "evidence": "Acceptance rate 44.1%, burn-in 5000/55000, detailed balance mentioned"
+    }
+  ],
+  "pass_rate": 1.0,
+  "notes": "Good baseline but sampling directly in (0,1) with hard boundary check (if theta <= 0 return -inf). Missing: logit-space sampling, Jacobian, proposal tuning, ESS. Validates against Beta(9,5) analytically \u2014 this was also strong.",
+  "summary": {
+    "pass_rate": 1.0,
+    "passed": 6,
+    "failed": 0,
+    "total": 6
+  }
+}

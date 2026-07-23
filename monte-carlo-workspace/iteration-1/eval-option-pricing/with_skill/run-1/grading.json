@@ -1,0 +1,45 @@
+{
+  "eval_id": 1,
+  "eval_name": "option-pricing",
+  "configuration": "with_skill",
+  "expectations": [
+    {
+      "text": "produces_python_code",
+      "passed": true,
+      "evidence": "GBM simulation code shown; BS formula code shown"
+    },
+    {
+      "text": "uses_gbm",
+      "passed": true,
+      "evidence": "Explicit GBM formula: S_T = S0 * exp((r - \u03c3\u00b2/2)*T + \u03c3*\u221aT*Z); risk-neutral measure stated"
+    },
+    {
+      "text": "discounts_payoff",
+      "passed": true,
+      "evidence": "exp(-r*T) discount factor explicitly applied; mentioned in design section"
+    },
+    {
+      "text": "reports_confidence_interval",
+      "passed": true,
+      "evidence": "95% CI [\u00a34.5614, \u00a34.6068] with SE=\u00a30.0116, rel std error 0.25%"
+    },
+    {
+      "text": "black_scholes_validation",
+      "passed": true,
+      "evidence": "BS computed analytically (\u00a34.5817); d1/d2/N values shown in table; error 0.053%; BS inside CI confirmed"
+    },
+    {
+      "text": "correct_parameter_usage",
+      "passed": true,
+      "evidence": "S0=\u00a3100, K=\u00a3105, r=5%, \u03c3=20%, T=0.5 all used correctly in simulation and BS formula"
+    }
+  ],
+  "pass_rate": 1.0,
+  "notes": "Skill added: explicit risk-neutral measure statement, dividend yield caveat, convergence table (N=1k to 500k), variance reduction suggestion (antithetic variates). Used 500k paths vs baseline's 1M \u2014 comparable quality at half cost.",
+  "summary": {
+    "pass_rate": 1.0,
+    "passed": 6,
+    "failed": 0,
+    "total": 6
+  }
+}

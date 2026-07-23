@@ -1,0 +1,49 @@
+{
+  "skill_name": "monte-carlo",
+  "evals": [
+    {
+      "id": 0,
+      "eval_name": "pi-estimation",
+      "prompt": "I want to estimate pi using Monte Carlo simulation. Can you write me a Python script that does this, shows the convergence as N increases, and gives me a 95% confidence interval on the result?",
+      "expected_output": "Runnable Python script using numpy vectorisation (not Python loops) that: samples random points in the unit square, estimates pi from the ratio in the unit circle, reports a 95% CI, and shows or describes how the estimate converges as N grows.",
+      "files": [],
+      "assertions": [
+        {"id": "produces_python_code", "description": "Response includes runnable Python code"},
+        {"id": "uses_numpy_vectorisation", "description": "Code uses numpy arrays rather than a Python loop for sampling"},
+        {"id": "reports_confidence_interval", "description": "Code or explanation includes a 95% confidence interval"},
+        {"id": "convergence_analysis", "description": "Code or explanation addresses convergence as N increases"},
+        {"id": "validates_against_true_pi", "description": "Response mentions or compares against the true value of pi (3.14159...)"}
+      ]
+    },
+    {
+      "id": 1,
+      "eval_name": "option-pricing",
+      "prompt": "I need to price a European call option using Monte Carlo. Stock is currently at £100, strike is £105, risk-free rate is 5%, volatility is 20%, time to expiry is 6 months. Show me the MC price, a confidence interval, and validate it against the Black-Scholes analytical price.",
+      "expected_output": "Python code implementing GBM path simulation, discounting payoffs, computing CI. Should also compute the BS analytical price for comparison. Should correctly use S0=100, K=105, r=0.05, sigma=0.20, T=0.5.",
+      "files": [],
+      "assertions": [
+        {"id": "produces_python_code", "description": "Response includes runnable Python code"},
+        {"id": "uses_gbm", "description": "Code uses Geometric Brownian Motion or equivalent log-normal model"},
+        {"id": "discounts_payoff", "description": "Code applies exp(-rT) discount factor to the payoff"},
+        {"id": "reports_confidence_interval", "description": "Response reports a confidence interval on the MC price"},
+        {"id": "black_scholes_validation", "description": "Response computes or references the Black-Scholes analytical price for comparison"},
+        {"id": "correct_parameter_usage", "description": "Code correctly uses S0=100, K=105, r=0.05, sigma=0.20, T=0.5"}
+      ]
+    },
+    {
+      "id": 2,
+      "eval_name": "bayesian-posterior",
+      "prompt": "I have some coin flip data: 7 heads out of 10 flips. I want to estimate the posterior distribution of the coin's bias using MCMC with a Beta(2,2) prior. Implement Metropolis-Hastings from scratch, show me the posterior, and compute the 95% credible interval for the bias.",
+      "expected_output": "Python code implementing M-H with Beta(2,2) prior and Binomial likelihood for 7/10. Should include burn-in discard, report acceptance rate, compute 95% credible interval from posterior samples.",
+      "files": [],
+      "assertions": [
+        {"id": "produces_python_code", "description": "Response includes runnable Python code"},
+        {"id": "implements_metropolis_hastings", "description": "Code explicitly implements Metropolis-Hastings accept/reject step"},
+        {"id": "uses_beta_prior", "description": "Code uses Beta(2,2) or equivalent prior"},
+        {"id": "binomial_likelihood", "description": "Code uses binomial likelihood for 7 heads out of 10"},
+        {"id": "reports_credible_interval", "description": "Response reports a 95% credible interval on the bias"},
+        {"id": "discusses_diagnostics", "description": "Response mentions burn-in, acceptance rate, or convergence diagnostics"}
+      ]
+    }
+  ]
+}

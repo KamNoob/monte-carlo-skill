@@ -1,0 +1,27 @@
+{
+  "eval_id": 0,
+  "eval_name": "pi-estimation",
+  "prompt": "I want to estimate pi using Monte Carlo simulation. Can you write me a Python script that does this, shows the convergence as N increases, and gives me a 95% confidence interval on the result?",
+  "assertions": [
+    {
+      "id": "produces_python_code",
+      "description": "Response includes runnable Python code"
+    },
+    {
+      "id": "uses_numpy_vectorisation",
+      "description": "Code uses numpy arrays rather than a Python loop for sampling"
+    },
+    {
+      "id": "reports_confidence_interval",
+      "description": "Code or explanation includes a 95% confidence interval"
+    },
+    {
+      "id": "convergence_analysis",
+      "description": "Code or explanation addresses convergence as N increases"
+    },
+    {
+      "id": "validates_against_true_pi",
+      "description": "Response mentions or compares against the true value of pi"
+    }
+  ]
+}

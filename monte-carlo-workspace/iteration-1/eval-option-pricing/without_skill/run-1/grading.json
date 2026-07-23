@@ -1,0 +1,45 @@
+{
+  "eval_id": 1,
+  "eval_name": "option-pricing",
+  "configuration": "without_skill",
+  "expectations": [
+    {
+      "text": "produces_python_code",
+      "passed": true,
+      "evidence": "GBM simulation code and BS code provided"
+    },
+    {
+      "text": "uses_gbm",
+      "passed": true,
+      "evidence": "S_T = S\u2080\u00b7exp[(r \u2212 \u03c3\u00b2/2)\u00b7T + \u03c3\u00b7\u221aT\u00b7Z] formula shown"
+    },
+    {
+      "text": "discounts_payoff",
+      "passed": true,
+      "evidence": "Mentions 'discounted payoff max(S_T \u2212 K, 0)\u00b7e^(\u2212rT)'"
+    },
+    {
+      "text": "reports_confidence_interval",
+      "passed": true,
+      "evidence": "95% CI [\u00a34.5693, \u00a34.6013] with SE=\u00a30.0082"
+    },
+    {
+      "text": "black_scholes_validation",
+      "passed": true,
+      "evidence": "BS computed (\u00a34.5817); d1/d2 calculations shown; absolute error \u00a30.0036; BS inside CI confirmed"
+    },
+    {
+      "text": "correct_parameter_usage",
+      "passed": true,
+      "evidence": "All parameters S0=100, K=105, r=0.05, \u03c3=0.20, T=0.5 correct"
+    }
+  ],
+  "pass_rate": 1.0,
+  "notes": "Strong baseline. Used Box-Muller for normals (slightly non-standard vs np.random.standard_normal, but valid). Missing: key assumptions section, convergence table, variance reduction suggestions.",
+  "summary": {
+    "pass_rate": 1.0,
+    "passed": 6,
+    "failed": 0,
+    "total": 6
+  }
+}
